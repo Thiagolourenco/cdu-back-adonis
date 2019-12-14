@@ -23,5 +23,5 @@ Route.post('users', 'UserController.store')
 Route.post('sessions', 'SessionController.store')
 
 // ForgotPassword
-Route.post('passwords', 'ForgotController.store')
-Route.put('passwords', 'ForgotController.update')
+Route.post('passwords', 'ForgotPasswordController.store')
+Route.put('passwords', 'ForgotPasswordController.update')

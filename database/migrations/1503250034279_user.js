@@ -17,6 +17,8 @@ class UserSchema extends Schema {
         .unique()
       table.string('password', 60).notNullable()
       table.boolean('admin')
+      table.string('token')
+      table.string('token_created_at')
       table.timestamps()
     })
   }

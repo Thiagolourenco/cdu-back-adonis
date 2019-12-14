@@ -11,7 +11,9 @@ class ForgotPasswordController {
       const email = request.input('email')
       const user = await User.findByOrFail('email', email)
 
-      user.token = crypto.randomBytes(10)
+      console.log(user)
+      // user.token = crypto.randomBytes(10).toString('hex')
+      user.token = Math.floor(Math.random() * 65536)
       user.token_created_at = new Date()
 
       await user.save()
@@ -26,14 +28,15 @@ class ForgotPasswordController {
         message => {
           message
             .to(user.email)
-            .from('admin@gmail', 'Admin (Administrador do Sistema)')
+            .from('thiagolourencosaraiva123@gmail', 'Thiago Lourenço')
             .subject('Recuperação de Senha')
         }
       )
     } catch (err) {
-      return response
-        .status(500)
-        .send({ error: { message: 'Algo deu errado, verificar sey email' } })
+      return response.json(err)
+      // return response
+      //   .status(500)
+      //   .send({ error: { message: 'Algo deu errado, verificar seu email' } })
     }
   }
 
