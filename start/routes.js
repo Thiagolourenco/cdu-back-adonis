@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,21 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
+const Route = use("Route");
 
 // Create User
-Route.post('users', 'UserController.store')
+Route.post("users", "UserController.store");
 
 // Session Controller
-Route.post('sessions', 'SessionController.store')
+Route.post("sessions", "SessionController.store");
 
 // ForgotPassword
-Route.post('passwords', 'ForgotPasswordController.store')
-Route.put('passwords', 'ForgotPasswordController.update')
+Route.post("passwords", "ForgotPasswordController.store");
+Route.put("passwords", "ForgotPasswordController.update");
+
+// Upload de Arquivos
+Route.group(() => {
+  Route.post("/files", "FileController.store");
+  Route.post("/files_pdf", "FilePdfController.store");
+  Route.post("/files_pdf_dec", "FilePdfDeclaracaoController.store");
+}).middleware("auth");
