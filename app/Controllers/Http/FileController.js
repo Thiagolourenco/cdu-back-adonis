@@ -14,23 +14,23 @@ class FileController {
     try {
       if (!request.file("file")) return;
 
-      const upload = request.file("file", { size: "2mb" });
+      const uploads = request.file("file", { size: "2mb" });
 
-      const fileName = `${Date.now()}.${upload.subtype}`;
+      const fileName = `${Date.now()}.${uploads.subtype}`;
 
-      await upload.move(Helpers.tmpPath("uploads/imagens"), {
+      await uploads.move(Helpers.tmpPath("uploads/imagens"), {
         name: fileName
       });
 
-      if (!upload.moved()) {
-        throw upload.error();
+      if (!uploads.moved()) {
+        throw uploads.error();
       }
 
       const file = await File.create({
         file: fileName,
-        name: upload.clientName,
-        type: upload.type,
-        subtype: upload.subtype
+        name: uploads.clientName,
+        type: uploads.type,
+        subtype: uploads.subtype
       });
 
       return file;
