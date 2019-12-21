@@ -1,2 +1,2 @@
-release: node ace migration:run — force
+release: adonis migration:run
 web: npm start
