@@ -7,7 +7,7 @@ const Env = use("Env");
 const Helpers = use("Helpers");
 
 const Url = require("url-parse");
-const POSTGRES_DATABASE_URL = new Url(Env.get("DB_HOST"));
+const DATABASE_URL = new Url(Env.get("DATABASE_URL"));
 
 module.exports = {
   /*
@@ -31,7 +31,7 @@ module.exports = {
   |
   | npm i --save sqlite3
   |
-  */
+  */DATABASEDATABASE_URL_URL
   sqlite: {
     client: "sqlite3",
     connection: {
@@ -78,11 +78,11 @@ module.exports = {
   pg: {
     client: "pg",
     connection: {
-      host: Env.get("DB_HOST", POSTGRES_DATABASE_URL.host),
-      port: Env.get("DB_PORT", POSTGRES_DATABASE_URL.port),
-      user: Env.get("DB_USER", POSTGRES_DATABASE_URL.username),
-      password: Env.get("DB_PASSWORD", POSTGRES_DATABASE_URL.password),
-      database: Env.get("DB_DATABASE", POSTGRES_DATABASE_URL.pathname.substr(1))
+      host: Env.get("DB_HOST", DATABASE_URL.host),
+      port: Env.get("DB_PORT", DATABASE_URL.port),
+      user: Env.get("DB_USER", DATABASE_URL.username),
+      password: Env.get("DB_PASSWORD", DATABASE_URL.password),
+      database: Env.get("DB_DATABASE", DATABASE_URL.pathname.substr(1))
     },
     debug: Env.get("DB_DEBUG", false)
   }
